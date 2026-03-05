@@ -33,7 +33,7 @@ export function findClusters(grid) {
         clusters.push({ symbol: sym, positions: run });
       }
 
-      // Vertical run from (i,j) — only if not already in a horizontal cluster
+      // Vertical run from (i,j) — рахуємо тільки якщо клітинки ще не в іншому кластері (кожен символ лише в одному виграші)
       run = [idx];
       let r = i + 1;
       while (r < ROWS) {
@@ -45,8 +45,11 @@ export function findClusters(grid) {
         } else break;
       }
       if (run.length >= MIN_CLUSTER) {
-        run.forEach(p => used.add(p));
-        clusters.push({ symbol: sym, positions: run });
+        const alreadyUsed = run.some(p => used.has(p));
+        if (!alreadyUsed) {
+          run.forEach(p => used.add(p));
+          clusters.push({ symbol: sym, positions: run });
+        }
       }
     }
   }

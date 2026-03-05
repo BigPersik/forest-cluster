@@ -97,10 +97,11 @@ export function Grid({ board, roundId, winPositions, eventIndex, events, onAdvan
         const row = Math.floor(i / COLS);
         const delay = col * 0.055 + row * 0.03;
         const exitDelay = row * 0.04 + col * 0.02;
+        const isWin = showWin?.has(i);
         return (
           <div
             key={isExiting ? `exit-${i}` : `${dropKey}-${i}`}
-            className={`cell ${isExiting ? 'cell-exit' : 'cell-drop'} ${showWin?.has(i) ? 'win' : ''}`}
+            className={`cell ${isExiting ? 'cell-exit' : 'cell-drop'} ${isWin ? 'win' : ''}`}
             title={SYMBOL_LABELS[sym] ?? sym}
             data-col={col}
             data-row={row}
@@ -109,6 +110,12 @@ export function Grid({ board, roundId, winPositions, eventIndex, events, onAdvan
             }}
           >
             {SYMBOL_LABELS[sym]?.charAt(0) ?? sym}
+            {isWin && (
+              <span className="cell-cross" aria-hidden="true">
+                <span className="cell-cross-line" />
+                <span className="cell-cross-line" />
+              </span>
+            )}
           </div>
         );
       })}
