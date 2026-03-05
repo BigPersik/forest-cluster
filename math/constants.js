@@ -20,7 +20,7 @@ export const SYMBOLS = {
   SCATTER: 9,
 };
 
-/** NORMAL mode weights — fewer WILD/SCATTER = fewer big wins and features. Target RTP ~96% */
+/** NORMAL mode weights — fewer WILD/SCATTER = fewer big wins and features. Target RTP ~95% */
 export const NORMAL_WEIGHTS = [
   [0, 6, 10, 35, 35, 35, 35, 35, 1, 3],
   [0, 6, 10, 38, 38, 38, 38, 38, 1, 2],
@@ -31,7 +31,7 @@ export const NORMAL_WEIGHTS = [
   [0, 9, 13, 48, 48, 48, 48, 48, 1, 0],
 ];
 
-/** SUPER mode — slightly more premium, target RTP ~96.50% */
+/** SUPER mode — slightly more premium, target RTP ~95% */
 export const SUPER_WEIGHTS = [
   [0, 8, 12, 32, 32, 32, 32, 32, 2, 4],
   [0, 8, 12, 35, 35, 35, 35, 35, 2, 3],
@@ -42,30 +42,30 @@ export const SUPER_WEIGHTS = [
   [0, 11, 15, 46, 46, 46, 46, 46, 1, 1],
 ];
 
-/** Cluster paytable (multiplier per 1 bet). NORMAL — reduced for ~96% RTP */
+/** Cluster paytable (multiplier per 1 bet). NORMAL — scaled for ~95% RTP */
 export const PAYTABLE_NORMAL = {
-  [SYMBOLS.KOALA]:    [0, 0, 0, 0, 0.08, 0.16, 0.32, 0.8, 1.6, 3.2, 8],
-  [SYMBOLS.GUMLEAF]:  [0, 0, 0, 0, 0.06, 0.12, 0.24, 0.6, 1.2, 2.4, 6],
-  [SYMBOLS.BILLABONG]:[0, 0, 0, 0, 0.05, 0.1, 0.2, 0.5, 1, 2, 5],
-  [SYMBOLS.A]:        [0, 0, 0, 0, 0.04, 0.08, 0.16, 0.4, 0.8, 1.6, 4],
-  [SYMBOLS.K]:        [0, 0, 0, 0, 0.03, 0.06, 0.12, 0.3, 0.6, 1.2, 3],
-  [SYMBOLS.Q]:        [0, 0, 0, 0, 0.02, 0.04, 0.08, 0.2, 0.4, 0.8, 2],
-  [SYMBOLS.J]:        [0, 0, 0, 0, 0.016, 0.032, 0.064, 0.16, 0.32, 0.64, 1.6],
-  [SYMBOLS.TEN]:      [0, 0, 0, 0, 0.01, 0.02, 0.04, 0.1, 0.2, 0.4, 1],
+  [SYMBOLS.KOALA]:    [0, 0, 0, 0, 0.079, 0.158, 0.317, 0.792, 1.583, 3.167, 7.917],
+  [SYMBOLS.GUMLEAF]:  [0, 0, 0, 0, 0.059, 0.119, 0.237, 0.594, 1.188, 2.375, 5.938],
+  [SYMBOLS.BILLABONG]:[0, 0, 0, 0, 0.049, 0.099, 0.198, 0.495, 0.99, 1.979, 4.948],
+  [SYMBOLS.A]:        [0, 0, 0, 0, 0.04, 0.079, 0.158, 0.396, 0.792, 1.583, 3.958],
+  [SYMBOLS.K]:        [0, 0, 0, 0, 0.03, 0.059, 0.119, 0.297, 0.594, 1.188, 2.969],
+  [SYMBOLS.Q]:        [0, 0, 0, 0, 0.02, 0.04, 0.079, 0.198, 0.396, 0.792, 1.979],
+  [SYMBOLS.J]:        [0, 0, 0, 0, 0.016, 0.032, 0.063, 0.158, 0.317, 0.633, 1.583],
+  [SYMBOLS.TEN]:      [0, 0, 0, 0, 0.01, 0.02, 0.04, 0.099, 0.198, 0.396, 0.99],
   [SYMBOLS.WILD]:     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [SYMBOLS.SCATTER]:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 };
 
-/** SUPER paytable — slightly higher, target ~96.50% */
+/** SUPER paytable — scaled for ~95% RTP */
 export const PAYTABLE_SUPER = {
-  [SYMBOLS.KOALA]:    [0, 0, 0, 0, 0.09, 0.18, 0.36, 0.9, 1.8, 3.6, 9],
-  [SYMBOLS.GUMLEAF]:  [0, 0, 0, 0, 0.07, 0.14, 0.28, 0.7, 1.4, 2.8, 7],
-  [SYMBOLS.BILLABONG]:[0, 0, 0, 0, 0.06, 0.12, 0.24, 0.6, 1.2, 2.4, 6],
-  [SYMBOLS.A]:        [0, 0, 0, 0, 0.05, 0.1, 0.2, 0.5, 1, 2, 5],
-  [SYMBOLS.K]:        [0, 0, 0, 0, 0.04, 0.08, 0.16, 0.4, 0.8, 1.6, 4],
-  [SYMBOLS.Q]:        [0, 0, 0, 0, 0.03, 0.06, 0.12, 0.3, 0.6, 1.2, 3],
-  [SYMBOLS.J]:        [0, 0, 0, 0, 0.024, 0.048, 0.096, 0.24, 0.48, 0.96, 2.4],
-  [SYMBOLS.TEN]:      [0, 0, 0, 0, 0.015, 0.03, 0.06, 0.15, 0.3, 0.6, 1.5],
+  [SYMBOLS.KOALA]:    [0, 0, 0, 0, 0.089, 0.177, 0.354, 0.886, 1.772, 3.544, 8.86],
+  [SYMBOLS.GUMLEAF]:  [0, 0, 0, 0, 0.069, 0.138, 0.276, 0.689, 1.378, 2.756, 6.891],
+  [SYMBOLS.BILLABONG]:[0, 0, 0, 0, 0.059, 0.118, 0.236, 0.591, 1.182, 2.364, 5.909],
+  [SYMBOLS.A]:        [0, 0, 0, 0, 0.049, 0.099, 0.197, 0.492, 0.984, 1.969, 4.922],
+  [SYMBOLS.K]:        [0, 0, 0, 0, 0.039, 0.079, 0.157, 0.394, 0.787, 1.575, 3.938],
+  [SYMBOLS.Q]:        [0, 0, 0, 0, 0.03, 0.059, 0.118, 0.295, 0.591, 1.182, 2.954],
+  [SYMBOLS.J]:        [0, 0, 0, 0, 0.024, 0.047, 0.094, 0.236, 0.472, 0.945, 2.362],
+  [SYMBOLS.TEN]:      [0, 0, 0, 0, 0.015, 0.03, 0.059, 0.148, 0.295, 0.591, 1.477],
   [SYMBOLS.WILD]:     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [SYMBOLS.SCATTER]:  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 };
@@ -81,5 +81,5 @@ export const FEATURE_TRIGGERS = {
 export const KOALA_SPINS_COUNT = { min: 3, max: 6 };
 /** Gumleaf Grove: picks count */
 export const GUMLEAF_GROVE_PICKS = 5;
-/** Billabong Bonus: lower multiplier pool */
-export const BILLABONG_MULTIPLIERS = [0.5, 1, 1.5, 2, 3, 5, 8, 10, 15, 25];
+/** Billabong Bonus: multiplier pool scaled for ~95% RTP */
+export const BILLABONG_MULTIPLIERS = [0.49, 0.99, 1.48, 1.98, 2.97, 4.95, 7.92, 9.9, 14.84, 24.74];

@@ -85,7 +85,7 @@ function runKoalaSpins(rng, paytable, weights, spinCount) {
  * Gumleaf Grove: pick game. Pre-calculated picks (indices) and rewards.
  */
 function runGumleafGrove(rng, picksCount = GUMLEAF_GROVE_PICKS) {
-  const options = [0.2, 0.4, 0.6, 1, 1.5, 2, 3, 5]; // multiplier options (RTP-friendly)
+  const options = [0.2, 0.4, 0.59, 0.99, 1.48, 1.98, 2.97, 4.95]; // multiplier options (~95% RTP)
   const shuffled = [...options].sort(() => rng() - 0.5);
   const pickOrder = [];
   for (let i = 0; i < picksCount; i++) {

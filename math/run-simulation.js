@@ -126,8 +126,8 @@ async function main() {
 
   const report = {
     simulationDate: new Date().toISOString(),
-    NORMAL: { ...normalStats, targetRTP: '96.00%', tolerance: '±0.05%' },
-    SUPER: { ...superStats, targetRTP: '96.50%', tolerance: '±0.05%' },
+    NORMAL: { ...normalStats, targetRTP: '95.00%', tolerance: '±0.05%' },
+    SUPER: { ...superStats, targetRTP: '95.00%', tolerance: '±0.05%' },
   };
   writeFileSync(join(OUT_DIR, 'rtp_report.json'), JSON.stringify(report, null, 2), 'utf8');
   console.log('RTP report written to library/rtp_report.json');
