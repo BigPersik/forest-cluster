@@ -1,0 +1,9 @@
+{
+  "name": "@koala-cluster/math",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "simulate": "node run-simulation.js",
+    "simulate:quick": "node run-simulation.js --quick"
+  }
+}
