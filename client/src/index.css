@@ -181,11 +181,37 @@ html, body, #root {
   background: linear-gradient(180deg, var(--grid-bg) 0%, var(--cell-bg) 100%);
 }
 
-.lang-switcher {
+.top-right-controls {
   position: fixed;
   top: 12px;
   right: 12px;
   z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sound-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--cell-border);
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--cell-bg) 0%, var(--forest-light) 100%);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.25rem;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 2px 8px rgba(0,0,0,0.2);
+}
+.sound-btn:hover {
+  background: linear-gradient(180deg, var(--grid-bg) 0%, var(--cell-bg) 100%);
+}
+.sound-btn.sound-muted .sound-icon {
+  opacity: 0.6;
+}
+.lang-switcher {
   display: flex;
   align-items: center;
   gap: 2px;
@@ -237,11 +263,38 @@ html, body, #root {
 .history-list li {
   padding: 10px 0;
   border-bottom: 1px solid var(--cell-border);
-  font-weight: 600;
   color: var(--text);
 }
 .history-list li:last-child {
   border-bottom: none;
+}
+.history-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.history-label-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.history-label {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+.history-combo {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 400;
+  line-height: 1.35;
+}
+.history-amount {
+  color: var(--accent);
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .game-header-koala {
@@ -569,6 +622,17 @@ html, body, #root {
   box-shadow: 0 4px 16px var(--accent-glow);
 }
 
+/* SUPER = X2 stake, premium look */
+.controls button.spin-super-btn {
+  background: linear-gradient(180deg, var(--gold) 0%, var(--gold-dim) 100%) !important;
+  color: #1a1508 !important;
+  border: 1px solid #d4af37 !important;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.35);
+}
+.controls button.spin-super-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 20px rgba(201, 162, 39, 0.45);
+}
+
 .controls button.secondary {
   background: linear-gradient(180deg, var(--cell-bg) 0%, var(--forest-light) 100%);
   color: var(--text);
@@ -586,6 +650,15 @@ html, body, #root {
   transform: none;
 }
 
+.auto-spin-stop {
+  background: linear-gradient(180deg, #8b4513 0%, #6b3410 100%) !important;
+  color: #f0e6d8 !important;
+  border: 1px solid #a0522d !important;
+}
+.auto-spin-stop:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
 /* Error message */
 .game-container > p[style*="color: #ef5350"],
 .game-container .error-msg {
@@ -600,74 +673,24 @@ html, body, #root {
   opacity: 0.6;
 }
 
-/* Rules panel — виїжджає вікно */
-.rules-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: 200;
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
-  animation: rulesFadeIn 0.25s ease;
-}
-@keyframes rulesFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-.rules-panel {
-  width: 100%;
-  max-width: 380px;
-  background: linear-gradient(160deg, var(--grid-bg) 0%, var(--forest-mid) 100%);
-  border-left: 3px solid var(--accent);
-  box-shadow: -8px 0 32px var(--shadow), inset 0 1px 0 rgba(255,255,255,0.06);
+/* Rules — модальне вікно по центру (як ставка) */
+.rules-modal {
+  max-width: 420px;
+  max-height: 85vh;
   display: flex;
   flex-direction: column;
-  animation: rulesSlideIn 0.3s ease;
 }
-@keyframes rulesSlideIn {
-  from { transform: translateX(100%); }
-  to { transform: translateX(0); }
-}
-.rules-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--cell-border);
-}
-.rules-header h2 {
-  margin: 0;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 1.35rem;
-  color: var(--accent);
-}
-.rules-close {
-  width: 36px;
-  height: 36px;
-  border: none;
-  border-radius: 8px;
-  background: var(--cell-bg);
-  color: var(--text);
-  font-size: 1.5rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.rules-close:hover {
-  background: var(--forest-light);
-}
-.rules-body {
-  padding: 20px;
+.rules-modal .rules-body {
+  padding: 18px 20px 20px;
   overflow-y: auto;
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.55;
 }
-.rules-body p {
+.rules-modal .rules-body p {
   margin: 0 0 14px 0;
 }
-.rules-body p:last-child {
+.rules-modal .rules-body p:last-child {
   margin-bottom: 0;
 }
 .rules-body strong {
@@ -749,8 +772,115 @@ html, body, #root {
   filter: brightness(1.1);
 }
 
+/* Планшети та великі телефони */
+@media (max-width: 600px) {
+  .game-container {
+    padding-bottom: 88px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+    max-width: 100%;
+  }
+  .controls > button.bet-trigger-btn {
+    grid-column: 1 / -1;
+  }
+  .controls > button.auto-spin-btn,
+  .controls > button.auto-spin-stop {
+    grid-column: 1 / -1;
+  }
+  .controls button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    min-height: 44px;
+  }
+  .top-right-controls {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+  .sound-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.1rem;
+  }
+  .lang-btn {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+  }
+  .corner-left {
+    bottom: 10px;
+    left: 10px;
+  }
+  .corner-right {
+    bottom: 10px;
+    right: 10px;
+  }
+  .btn-corner {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+  .balance-strip {
+    padding: 8px 12px;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .win-breakdown {
+    font-size: 0.8rem;
+    word-break: break-word;
+    padding: 0 4px;
+  }
+}
+
+/* Телефони */
 @media (max-width: 480px) {
-  .grid-wrap { max-width: 96vw; padding: 8px; gap: 3px; }
-  .cell { font-size: 12px; border-radius: 8px; }
-  .balance-strip { padding: 8px 16px; gap: 16px; }
+  .game-container {
+    padding: 10px 8px 88px;
+  }
+  .game-header {
+    margin-bottom: 10px;
+  }
+  .game-title {
+    font-size: 1.35rem;
+  }
+  .game-subtitle {
+    font-size: 0.7rem;
+  }
+  .grid-wrap {
+    max-width: min(96vw, 75vh, 320px);
+    padding: 6px;
+    gap: 3px;
+  }
+  .cell {
+    font-size: 11px;
+    border-radius: 6px;
+  }
+  .balance-strip {
+    padding: 8px 10px;
+    gap: 10px;
+    font-size: 0.9rem;
+  }
+  .controls {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .controls button {
+    padding: 10px 8px;
+    font-size: 0.78rem;
+    min-height: 42px;
+  }
+  .bet-modal,
+  .rules-modal {
+    max-width: 94vw;
+    margin: 10px;
+  }
+  .history-modal .bet-modal {
+    max-width: 94vw;
+  }
 }

@@ -1,0 +1,12 @@
+node_modules
+client/node_modules
+rgs/node_modules
+**/node_modules
+dist
+client/dist
+*.log
+.env
+.env.local
+library
+*.zst
+.git

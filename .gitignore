@@ -8,3 +8,5 @@ client/public/
 .DS_Store
 library/
 *.zst
+
+.vercel
