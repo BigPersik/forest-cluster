@@ -2,7 +2,6 @@ node_modules/
 dist/
 client/dist/
 client/public/
-public/
 *.log
 .env
 .env.local
